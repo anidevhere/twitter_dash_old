@@ -1,0 +1,110 @@
+{% extends "design.html" %}
+{% block script %}
+
+{% endblock script %}
+
+
+{% block my_content %}
+
+<div class="content-header">
+  <div class="container-fluid"  align = "Left">
+    <div class="row mb-2">
+      <div class="col-sm-6" >
+        <h1 class="m-0 text-dark">Covid-19 Sentiment Analysis Dashboard with filters </h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="container-fluid">
+
+    <form action="/page_with_filters" method="POST">
+
+        <label for="start">Enter the start date:</label>
+        <input type="date" id="start" name="start_date" min="2021-03-12" max="2021-04-02">
+
+        <label for="end">Enter the end date:</label>
+        <input type="date" id="end" name="end_date" min="2021-03-12" max="2021-04-02">
+
+        <input type="submit">
+
+    </form>
+
+
+    <div class="row">
+        <div class="col-lg-11" >
+            <div class="card" align = "center">
+                <div id="pie_sentiment" >
+                    <script >
+                        var pie_sentiment = {{pie_sentiment | safe}};
+                        Plotly.plot('pie_sentiment',pie_sentiment,{});
+                    </script>
+                </div>
+            </div><!-- /.card -->
+        </div><!-- /.col -->
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-6" align = "center">
+            <div class="card" >
+                <div id="user_bar_chart_negative" >
+                    <script >
+                        var user_bar_chart_negative = {{user_bar_chart_negative | safe}};
+                        Plotly.plot('user_bar_chart_negative',user_bar_chart_negative,{});
+                    </script>
+                </div><!-- /.card -->
+            </div><!-- /.col -->
+        </div>
+
+
+
+        <div class="col-lg-6" align = "center">
+            <div class="card" >
+                <div id="user_bar_chart_positive" >
+                    <script >
+                        var user_bar_chart_positive = {{user_bar_chart_positive | safe}};
+                        Plotly.plot('user_bar_chart_positive',user_bar_chart_positive,{});
+                    </script>
+                </div><!-- /.card -->
+            </div><!-- /.col -->
+        </div>
+        <div class ="row">
+            <div class="col-lg-6" align = "center">
+                <div class="card" >
+                    <div id="pie_test" >
+                        <script >
+                            var pie_test = {{pie_test | safe}};
+                            Plotly.plot('pie_test',pie_test,{});
+                        </script>
+                    </div><!-- /.card -->
+                </div><!-- /.col -->
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+        <div class="col-lg-12" >
+             <div class="card" align = "center">
+                <div id="general-table" >
+                    <script >
+                        var table = {{table_date | safe}};
+                        Plotly.plot('general-table',table,{});
+                    </script>
+                </div>
+             </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+{% endblock my_content %}

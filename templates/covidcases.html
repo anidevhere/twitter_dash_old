@@ -1,0 +1,72 @@
+{% extends "design.html" %}
+{% block script %}
+
+{% endblock script %}
+
+{% block my_content %}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Covid-19 Visualisation Dashboard </h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{total_all_confirmed}}</h3>
+                    <p>Total Confirmed</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{total_all_recovered}}<sup style="font-size: 20px"></sup></h3>
+                    <p>Total Recovered</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{total_all_deaths}}</h3>
+                    <p>Total Deaths</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" >
+            <div class="card" align = "center"  >
+                <div class="chart" id="plot_json">
+                    <script>
+                        var graphs = {{ plot_json | safe }};
+                        Plotly.plot('plot_json', graphs, {});
+                    </script>
+                </div>
+             </div>
+        </div>
+    </div>
+
+</div>
+<!-- Script to execute the Json ( we can create it also with looping) -->
+
+
+{% endblock my_content %}
